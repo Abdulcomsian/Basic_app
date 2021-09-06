@@ -161,7 +161,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        //For debugbar, this show page stats, views loaded, queries loaded, model loaded
         Barryvdh\Debugbar\ServiceProvider::class,
+        //For user permission and roles
+        Spatie\Permission\PermissionServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

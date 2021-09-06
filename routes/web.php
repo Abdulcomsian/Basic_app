@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 
 //Testing routes not using in production
 Route::get('/path',function (){
