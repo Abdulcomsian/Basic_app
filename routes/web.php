@@ -22,23 +22,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 
-//Testing routes not using in production
-Route::get('/path',function (){
-    dump('in path fun');
-    try {
-        $path = public_path().'/upload/settings/';
-        if(!File::exists($path)) {
-            File::makeDirectory($path, 0775, true); //creates directory
-            dd('in if');
-        }else{
-            dump('in else');
-            dd('Path exists',$path);
-        }
-    }catch (\Exception $exception){
-     dd($exception->getMessage());
-    }
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    Route::resource('users', 'UserController', ['except' => ['show']]);
 });
 
+//Testing routes not using in production
 Route::get('/check-config',function (){
    dd(config()->all());
 });
