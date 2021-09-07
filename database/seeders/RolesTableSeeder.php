@@ -35,9 +35,9 @@ class RolesTableSeeder extends Seeder
 
         $driver->givePermissionTo(Permission::create(['name' => 'edit orders']));
 
-        $backedn = Permission::create(['name' => 'access backedn']);
-        $admin->givePermissionTo($backedn);
-        $owner->givePermissionTo($backedn);
-        $driver->givePermissionTo($backedn);
+        $backend = Permission::create(['name' => 'access backend']);
+        $admin->givePermissionTo($backend);
+        $owner->givePermissionTo($backend);
+        $driver->givePermissionTo($backend);
     }
 }
