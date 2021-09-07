@@ -55,6 +55,7 @@
                 </div>
             </div>
             <!-- Navigation -->
+            <!-- Include side bar according to roles of user -->
             @if(auth()->user()->hasRole('admin'))
                 @include('layouts.navbars.menus.admin')
             @else
