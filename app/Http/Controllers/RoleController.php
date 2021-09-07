@@ -96,7 +96,7 @@ class RoleController extends Controller
             $rolePermissions = $role->permissions->pluck('id')->toarray();
             return view('roles.edit',compact('role','permissions','rolePermissions'));
         }catch (\Exception $exception){
-            dd($exception->getMessage());
+            return redirect()->back()->with('error',$exception->getMessage());
         }
     }
     /**
@@ -114,9 +114,9 @@ class RoleController extends Controller
             $role->save();
             $role->syncPermissions($request->input('permissions'));
             return redirect()->route('roles.index')
-                ->with('success','Role updated successfully');
+                ->with('status','Role updated successfully');
         }catch (\Exception $exception){
-            dd($exception->getMessage());
+            return redirect()->back()->with('error',$exception->getMessage());
         }
     }
     /**
